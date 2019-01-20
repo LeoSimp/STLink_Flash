@@ -24,8 +24,6 @@ namespace STLink_Flash
         /// 程序集名字+后缀
         /// </summary>
         public string MoudleConnString_Ext = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
-
-        
         
         public UserControl_UI()
         {
@@ -35,25 +33,6 @@ namespace STLink_Flash
             UC_Tittle.Text = MoudleConnString + " Ver " + asmfver.Version;
             UC_Tittle.Parent = pictureBox1;
             mset_Load();         
-        }
-
-        private void btn_FileSet_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.InitialDirectory = Environment.CurrentDirectory;
-            openFileDialog1.Filter = "烧录文件(*.bin,*.hex,*.srec,*.s19)|*.bin;*.hex;*.srec;*.s19|All files(*.*)|*.*";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                tb_FlashFile.Text = openFileDialog1.FileName;
-                string path = System.Windows.Forms.Application.StartupPath + @"\MoudleSettingFiles\";
-                tools.pcheck(path);
-                path += MoudleConnString + "_"  + ".mset";
-                using (StreamWriter sr = new StreamWriter(path, false, System.Text.Encoding.GetEncoding("GB2312")))
-                {
-                    string rst = "";                
-                    rst += tb_FlashFile.Text + "\r\n";
-                    sr.Write(rst);
-                }
-            }
         }
 
         internal void mset_Load()
@@ -77,14 +56,35 @@ namespace STLink_Flash
                 string DialogTittle = MoudleConnString_Ext;
                 MessageBox.Show("mset_Load初始化失败:" + ex.ToString(), DialogTittle);
             }
-            
+
+        }
+
+        //------------------以上为通用初始化区-----------------------------
+        //------------------以下为private内部函数和事件区-----------------------------
+
+        private void btn_FileSet_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = Environment.CurrentDirectory;
+            openFileDialog1.Filter = "烧录文件(*.bin,*.hex,*.srec,*.s19)|*.bin;*.hex;*.srec;*.s19|All files(*.*)|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                tb_FlashFile.Text = openFileDialog1.FileName;
+                string path = System.Windows.Forms.Application.StartupPath + @"\MoudleSettingFiles\";
+                tools.pcheck(path);
+                path += MoudleConnString + "_"  + ".mset";
+                using (StreamWriter sr = new StreamWriter(path, false, System.Text.Encoding.GetEncoding("GB2312")))
+                {
+                    string rst = "";                
+                    rst += tb_FlashFile.Text + "\r\n";
+                    sr.Write(rst);
+                }
+            }
         }
 
         private void tb_FlashFile_TextChanged(object sender, EventArgs e)
         {
             tb_FileNameFullString.Text = tb_FlashFile.Text;
         }
-
 
         private void cb_Debug_CheckedChanged(object sender, EventArgs e)
         {
@@ -97,18 +97,7 @@ namespace STLink_Flash
             }
 
         }
-        internal void OutputHandler(object sender, DataReceivedEventArgs e)
-        {
-            //动态读取,以下2个委托任选一个，第一个最简单，但无法设置自动下拉文本框
-            //rtb_STLink.BeginInvoke(new MethodInvoker(() => rtb_STLink.Text += e.Data + "\r\n"));
-            UpdateText(rtb_STLink,e.Data);               
-        }
-
-        internal void ErrorHandler(object sender, DataReceivedEventArgs e)
-        {
-            //MessageBox.Show(e.Data);
-        }
-
+      
         //Invoke回调函数
         private delegate void InvokeCallback(Control c,string text);
         private void UpdateText(Control c, string text)
@@ -135,18 +124,7 @@ namespace STLink_Flash
                 }
            
             }
-        }
-   
-        private void btn_RunBat_Click(object sender, EventArgs e)
-        {
-            btn_RunBat.Enabled = false;
-            cb_Debug.Enabled = false;
-            string RunLog = null;
-            RunBatFLASH(out RunLog);
-            Console.WriteLine(RunLog);            
-            cb_Debug.Enabled = true;
-            cb_Debug.Checked = false;
-        }
+        } 
 
         private int StartProcess(string filename, string argument, int timeout_ms)
         {
@@ -204,6 +182,39 @@ namespace STLink_Flash
 
         }
 
+        private void OutputHandler(object sender, DataReceivedEventArgs e)
+        {
+            //动态读取,以下2个委托任选一个，第一个最简单，但无法设置自动下拉文本框
+            //rtb_STLink.BeginInvoke(new MethodInvoker(() => rtb_STLink.Text += e.Data + "\r\n"));
+            UpdateText(rtb_STLink, e.Data);
+        }
+
+        private void ErrorHandler(object sender, DataReceivedEventArgs e)
+        {
+            //MessageBox.Show(e.Data);
+        }
+
+
+        //常用Public接受调用的接口函数，需搭配以下调试按钮，来演示调用
+        private void btn_RunBat_Click(object sender, EventArgs e)
+        {
+            btn_RunBat.Enabled = false;
+            cb_Debug.Enabled = false;
+            string RunLog = null;
+            RunBatFLASH(out RunLog);
+            Console.WriteLine(RunLog);
+            cb_Debug.Enabled = true;
+            cb_Debug.Checked = false;
+        }
+
+
+        //------------------以下为Public接受调用的接口区-----------------------------
+
+        /// <summary>
+        /// 获取批处理执行的Log及执行返回的ExitCode(string类型)
+        /// </summary>
+        /// <param name="RunLog">返回批处理执行的Log</param>
+        /// <returns>返回ExitCode(string类型)</returns>
         public string RunBatFLASH(out string RunLog)
         {
             rtb_STLink.Text = "";

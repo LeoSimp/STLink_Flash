@@ -11,7 +11,7 @@ namespace STLink_Flash
 {
     public partial class SmplUsngForm : Form
     {
-        public UserControl_UI control = new UserControl_UI(); //;//实例化一个对象
+        public UserControl_UI UIInstance = new UserControl_UI(); //;//实例化一个对象
         public SmplUsngForm()
         {
             InitializeComponent();
@@ -19,11 +19,11 @@ namespace STLink_Flash
         }
 
         public void AddUsrControl(Panel p)
-        {           
-            control.Dock = DockStyle.Fill;
-            control.BackColor = Color.White;
-            control.BorderStyle = BorderStyle.FixedSingle;
-            p.Controls.Add(control);//向controls集合（Panel）增加一个控件时，它会立即出现在窗体上 
+        {
+            UIInstance.Dock = DockStyle.Fill;
+            UIInstance.BackColor = Color.White;
+            UIInstance.BorderStyle = BorderStyle.FixedSingle;
+            p.Controls.Add(UIInstance);//向controls集合（Panel）增加一个控件时，它会立即出现在窗体上 
         }
     }
 }
