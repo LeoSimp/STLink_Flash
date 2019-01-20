@@ -1,0 +1,9 @@
+D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\bin\Debug\STLink_Flash.pdb
+D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.csprojResolveAssemblyReference.cache
+D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.SmplUsngForm.resources
+D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.Properties.Resources.resources
+D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.UserControl_UI.resources
+D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.csproj.GenerateResource.Cache
+D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.pdb
+D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\bin\Debug\STLink_Flash.dll
+D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.dll
