@@ -4,6 +4,27 @@
         <name>STLink_Flash</name>
     </assembly>
     <members>
+        <member name="T:STLink_Flash.SmplUsngForm">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:STLink_Flash.SmplUsngForm.UIInstance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:STLink_Flash.SmplUsngForm.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:STLink_Flash.SmplUsngForm.AddUsrControl(System.Windows.Forms.Panel)">
+            <summary>
+            
+            </summary>
+            <param name="p"></param>
+        </member>
         <member name="F:STLink_Flash.SmplUsngForm.components">
             <summary>
             必需的设计器变量。
@@ -32,6 +53,11 @@
             </summary>
             <param name="path"></param>
         </member>
+        <member name="T:STLink_Flash.UserControl_UI">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:STLink_Flash.UserControl_UI.MoudleConnString">
             <summary>
             程序集名字
@@ -42,11 +68,15 @@
             程序集名字+后缀
             </summary>
         </member>
+        <member name="M:STLink_Flash.UserControl_UI.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:STLink_Flash.UserControl_UI.RunBatFLASH(System.String@)">
             <summary>
             获取批处理执行的Log及执行返回的ExitCode(string类型)
-            </summary>
-            <param name="RunLog">返回批处理执行的Log</param>
+            </summary>        
             <returns>返回ExitCode(string类型)</returns>
         </member>
         <member name="F:STLink_Flash.UserControl_UI.components">

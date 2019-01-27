@@ -24,7 +24,9 @@ namespace STLink_Flash
         /// 程序集名字+后缀
         /// </summary>
         public string MoudleConnString_Ext = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
-        
+        /// <summary>
+        /// 
+        /// </summary>
         public UserControl_UI()
         {
             InitializeComponent();
@@ -41,7 +43,7 @@ namespace STLink_Flash
             {
                 string path = System.Windows.Forms.Application.StartupPath + @"\MoudleSettingFiles\";
                 tools.pcheck(path);
-                path += MoudleConnString + "_" + ".mset";
+                path += MoudleConnString + ".mset";
                 if (File.Exists(path))
                 {
                     using (StreamReader sr = new StreamReader(path, System.Text.Encoding.GetEncoding("GB2312")))
@@ -71,7 +73,7 @@ namespace STLink_Flash
                 tb_FlashFile.Text = openFileDialog1.FileName;
                 string path = System.Windows.Forms.Application.StartupPath + @"\MoudleSettingFiles\";
                 tools.pcheck(path);
-                path += MoudleConnString + "_"  + ".mset";
+                path += MoudleConnString + ".mset";
                 using (StreamWriter sr = new StreamWriter(path, false, System.Text.Encoding.GetEncoding("GB2312")))
                 {
                     string rst = "";                
@@ -182,11 +184,69 @@ namespace STLink_Flash
 
         }
 
+        private int StartProcess(string filename, string argument, int timeout_ms,out string output)
+        {
+            argument = argument.Trim();
+            Process process = new Process();//创建进程对象    
+            ProcessStartInfo startInfo = new ProcessStartInfo(filename, argument); // 括号里是(程序名,参数)
+            process.StartInfo = startInfo;
+            process.StartInfo.UseShellExecute = false;    //是否使用操作系统的shell启动,shell启动就无法获取StandardOutput
+            startInfo.RedirectStandardInput = true;      //接受来自调用程序的输入     
+            startInfo.RedirectStandardOutput = true;     //由调用程序获取输出信息
+            startInfo.CreateNoWindow = true;             //不显示调用程序的窗口，true=不显示
+            process.EnableRaisingEvents = true;
+            process.ErrorDataReceived += new DataReceivedEventHandler(ErrorHandler);
+            process.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
+            output = null;
+            try
+            {
+                process.Start();
+                //process.BeginOutputReadLine(); //异步
+               output = process.StandardOutput.ReadToEnd(); //同步,异步和同步不可同时执行
+                /*
+                string line = process.StandardOutput.ReadLine();//同步,每次读取一行
+                while (!process.StandardOutput.EndOfStream)
+                {
+                    rtb_STLink.AppendText(line + "\r\n");
+                    line = process.StandardOutput.ReadLine();
+                }                           
+                */
+                int i = 0;
+                while (!process.HasExited)
+                {
+                    ////等待程序执行完退出进程,并让窗口实时更新
+                    Thread.Sleep(100);
+                    i++;
+                    Application.DoEvents();
+                    if (i >= timeout_ms / 100)
+                    {
+                        process.Kill();
+                        MessageBox.Show("等待超时，强制关闭调用Process进程，Timout=" + timeout_ms + "ms");
+                        return -1;
+                    }
+                }
+                return process.ExitCode;
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("需要提升")) { MessageBox.Show(ex.Message + Environment.NewLine + "需要以管理员身份执行程序"); }
+                else
+                {
+                    MessageBox.Show(ex.Message + Environment.NewLine + ex.StackTrace);
+                }
+
+                return -1;
+            }
+
+        }
+
         private void OutputHandler(object sender, DataReceivedEventArgs e)
         {
             //动态读取,以下2个委托任选一个，第一个最简单，但无法设置自动下拉文本框
             //rtb_STLink.BeginInvoke(new MethodInvoker(() => rtb_STLink.Text += e.Data + "\r\n"));
             UpdateText(rtb_STLink, e.Data);
+            WriteLog(System.Windows.Forms.Application.StartupPath + @"\" + MoudleConnString + ".log", e.Data);
         }
 
         private void ErrorHandler(object sender, DataReceivedEventArgs e)
@@ -207,20 +267,37 @@ namespace STLink_Flash
             cb_Debug.Checked = false;
         }
 
+        private void WriteLog(string FullLogName, string Message)
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter(FullLogName, true, Encoding.Default, 512); // 创建写入流
+                sw.WriteLine(Message);
+                sw.Close(); //关闭文件
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + Environment.NewLine + ex.StackTrace);
+                return;
+            }
+
+        }
 
         //------------------以下为Public接受调用的接口区-----------------------------
 
         /// <summary>
         /// 获取批处理执行的Log及执行返回的ExitCode(string类型)
-        /// </summary>
-        /// <param name="RunLog">返回批处理执行的Log</param>
+        /// </summary>        
         /// <returns>返回ExitCode(string类型)</returns>
         public string RunBatFLASH(out string RunLog)
         {
             rtb_STLink.Text = "";
             rtb_STLink.ForeColor = Color.Black;
-            string rst=StartProcess(Environment.CurrentDirectory + @"\STLINK_FLASH.bat", "\"" + tb_FileNameFullString.Text + "\"", 120000).ToString();
-            RunLog = rtb_STLink.Text;
+            //RunLog = System.Windows.Forms.Application.StartupPath + @"\" + MoudleConnString + ".log";
+            //if (File.Exists(RunLog)) File.Delete(RunLog);
+            string output = null;
+            string rst=StartProcess(Environment.CurrentDirectory + @"\STLINK_FLASH.bat", "\"" + tb_FileNameFullString.Text + "\"", 120000,out output).ToString();
+            rtb_STLink.Text = output;
             if (rst == "0")
             {
                 rtb_STLink.ForeColor = Color.Green;
@@ -229,6 +306,8 @@ namespace STLink_Flash
             {
                 rtb_STLink.ForeColor = Color.Red;
             }
+            rtb_STLink.Update();
+            RunLog = output;
             return rst;
 
         }

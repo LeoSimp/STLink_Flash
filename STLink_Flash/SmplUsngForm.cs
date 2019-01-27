@@ -9,15 +9,29 @@ using System.Windows.Forms;
 
 namespace STLink_Flash
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class SmplUsngForm : Form
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public UserControl_UI UIInstance = new UserControl_UI(); //;//实例化一个对象
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SmplUsngForm()
         {
             InitializeComponent();
             AddUsrControl(pModuel);          
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p"></param>
         public void AddUsrControl(Panel p)
         {
             UIInstance.Dock = DockStyle.Fill;

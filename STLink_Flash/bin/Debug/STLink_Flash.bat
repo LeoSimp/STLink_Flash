@@ -29,4 +29,3 @@ exit /b %errorlevel%
 
 :end
 cd /d %~dp0
-echo 1>1.txt

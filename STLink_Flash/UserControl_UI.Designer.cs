@@ -1,5 +1,8 @@
 ﻿namespace STLink_Flash
 {
+    /// <summary>
+    /// 
+    /// </summary>
     partial class UserControl_UI
     {
         /// <summary> 

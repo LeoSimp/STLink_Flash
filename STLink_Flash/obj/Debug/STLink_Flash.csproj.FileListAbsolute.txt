@@ -8,12 +8,12 @@ D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.
 D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\bin\Debug\STLink_Flash.dll
 D:\visual studio 2015\Projects\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.dll
 D:\GitHub\MyDll\STLink_Flash\STLink_Flash\bin\Debug\STLink_Flash.XML
-D:\GitHub\MyDll\STLink_Flash\STLink_Flash\bin\Debug\STLink_Flash.dll
 D:\GitHub\MyDll\STLink_Flash\STLink_Flash\bin\Debug\STLink_Flash.pdb
 D:\GitHub\MyDll\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.csprojResolveAssemblyReference.cache
 D:\GitHub\MyDll\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.SmplUsngForm.resources
 D:\GitHub\MyDll\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.Properties.Resources.resources
 D:\GitHub\MyDll\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.UserControl_UI.resources
 D:\GitHub\MyDll\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.csproj.GenerateResource.Cache
-D:\GitHub\MyDll\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.dll
 D:\GitHub\MyDll\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.pdb
+D:\GitHub\MyDll\STLink_Flash\STLink_Flash\bin\Debug\STLink_Flash.dll
+D:\GitHub\MyDll\STLink_Flash\STLink_Flash\obj\Debug\STLink_Flash.dll
