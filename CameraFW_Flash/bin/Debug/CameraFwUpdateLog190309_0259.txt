@@ -1,0 +1,29 @@
+﻿**********************
+Windows PowerShell 脚本开始
+开始时间: 20190309145942
+用户名: ONEC_LEO\Administrator
+RunAs 用户: ONEC_LEO\Administrator
+配置名称: 
+计算机: ONEC_LEO (Microsoft Windows NT 6.2.9200.0)
+主机应用程序: CameraFirmwareUpdate.exe
+进程 ID: 17928
+PSVersion: 5.1.17134.112
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.17134.112
+BuildVersion: 10.0.17134.112
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+---------------------------------
+Checking ISP Firmware Version
+---------------------------------
+Failed to detect ISP device. Connect the device.and try again.......[NG]
+Operation Failed!.......[NG]
+
+**********************
+Windows PowerShell 脚本结束
+结束时间: 20190309145945
+**********************

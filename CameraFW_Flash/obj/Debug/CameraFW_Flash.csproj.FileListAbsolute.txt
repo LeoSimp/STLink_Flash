@@ -1,0 +1,10 @@
+D:\GitHub\MyDll\CameraFW_Flash\CameraFW_Flash\obj\Debug\CameraFW_Flash.csprojResolveAssemblyReference.cache
+D:\GitHub\MyDll\CameraFW_Flash\CameraFW_Flash\obj\Debug\CameraFW_Flash.SmplUsngForm.resources
+D:\GitHub\MyDll\CameraFW_Flash\CameraFW_Flash\obj\Debug\CameraFW_Flash.UserControl_UI.resources
+D:\GitHub\MyDll\CameraFW_Flash\CameraFW_Flash\obj\Debug\CameraFW_Flash.csproj.GenerateResource.Cache
+D:\GitHub\MyDll\CameraFW_Flash\CameraFW_Flash\bin\Debug\CameraFW_Flash.xml
+D:\GitHub\MyDll\CameraFW_Flash\CameraFW_Flash\bin\Debug\CameraFW_Flash.pdb
+D:\GitHub\MyDll\CameraFW_Flash\CameraFW_Flash\obj\Debug\CameraFW_Flash.Properties.Resources.resources
+D:\GitHub\MyDll\CameraFW_Flash\CameraFW_Flash\obj\Debug\CameraFW_Flash.pdb
+D:\GitHub\MyDll\CameraFW_Flash\CameraFW_Flash\bin\Debug\CameraFW_Flash.dll
+D:\GitHub\MyDll\CameraFW_Flash\CameraFW_Flash\obj\Debug\CameraFW_Flash.dll
