@@ -1,4 +1,0 @@
-Pre-Requisites:
-1.	Update the version.txt file to the version of the ISP FW you intend to flash.
-2.	Put the corresponding ISP FW binary in the same folder as the script. 
-Run the ¡°CameraFirmwareUpdate.exe¡± asa an administrator or use this .exe as a command line tool as needed without any parameters.

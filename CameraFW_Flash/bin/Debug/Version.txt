@@ -1,1 +1,0 @@
-ISP VERSION = 0.001
