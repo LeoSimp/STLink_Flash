@@ -13,6 +13,9 @@ using System.Threading;
 
 namespace STLink_Flash
 {
+
+
+
     public partial class UserControl_UI : UserControl
     {
         /// <summary>
@@ -24,6 +27,23 @@ namespace STLink_Flash
         /// 程序集名字+后缀
         /// </summary>
         public string MoudleConnString_Ext = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string FlashFileName
+        {
+            get
+            {
+                return tb_FileNameFullString.Text;
+            }
+            set
+            {
+                if (File.Exists(value))
+                { tb_FileNameFullString.Text = value; }
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -296,7 +316,7 @@ namespace STLink_Flash
             //RunLog = System.Windows.Forms.Application.StartupPath + @"\" + MoudleConnString + ".log";
             //if (File.Exists(RunLog)) File.Delete(RunLog);
             string output = null;
-            string rst=StartProcess(Environment.CurrentDirectory + @"\STLINK_FLASH.bat", "\"" + tb_FileNameFullString.Text + "\"", 120000,out output).ToString();
+            string rst=StartProcess(Environment.CurrentDirectory + @"\STLINK_FLASH.bat", "\"" + FlashFileName + "\"", 120000,out output).ToString();
             rtb_STLink.Text = output;
             if (rst == "0")
             {

@@ -196,10 +196,10 @@
         private System.Windows.Forms.TextBox tb_FlashFile;
         private System.Windows.Forms.Label label14;
         internal System.Windows.Forms.RichTextBox rtb_STLink;
-        internal System.Windows.Forms.TextBox tb_FileNameFullString;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btn_RunBat;
         private System.Windows.Forms.CheckBox cb_Debug;
         private System.Windows.Forms.Label UC_Tittle;
+        private System.Windows.Forms.TextBox tb_FileNameFullString;
     }
 }
