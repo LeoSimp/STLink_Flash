@@ -184,7 +184,8 @@ namespace STLink_Flash
                     if (i >= timeout_ms / 100)
                     {
                         process.Kill();
-                        MessageBox.Show("等待超时，强制关闭调用Process进程，Timout=" + timeout_ms + "ms");
+                        //MessageBox.Show("等待超时，强制关闭调用Process进程，Timout=" + timeout_ms + "ms");
+                        Console.WriteLine("等待超时，强制关闭调用Process进程，Timout=" + timeout_ms + "ms");
                         return -1;
                     }
                 }
@@ -265,8 +266,8 @@ namespace STLink_Flash
         {
             //动态读取,以下2个委托任选一个，第一个最简单，但无法设置自动下拉文本框
             //rtb_STLink.BeginInvoke(new MethodInvoker(() => rtb_STLink.Text += e.Data + "\r\n"));
-            UpdateText(rtb_STLink, e.Data);
-            WriteLog(System.Windows.Forms.Application.StartupPath + @"\" + MoudleConnString + ".log", e.Data);
+            UpdateText(rtb_Log, e.Data);           
+            WriteLog(Application.StartupPath + @"\" + MoudleConnString + ".log", e.Data);
         }
 
         private void ErrorHandler(object sender, DataReceivedEventArgs e)
@@ -281,7 +282,7 @@ namespace STLink_Flash
             btn_RunBat.Enabled = false;
             cb_Debug.Enabled = false;
             string RunLog = null;
-            RunBatFLASH(out RunLog);
+            RunBatFLASH(120000,out RunLog);
             Console.WriteLine(RunLog);
             cb_Debug.Enabled = true;
             cb_Debug.Checked = false;
@@ -309,25 +310,31 @@ namespace STLink_Flash
         /// 获取批处理执行的Log及执行返回的ExitCode(string类型)
         /// </summary>        
         /// <returns>返回ExitCode(string类型)</returns>
-        public string RunBatFLASH(out string RunLog)
+        public string RunBatFLASH(int Timeout_ms, out string RunLog)
         {
-            rtb_STLink.Text = "";
-            rtb_STLink.ForeColor = Color.Black;
+            rtb_Log.Text = "";
+            rtb_Log.Refresh();
+            rtb_Log.ForeColor = Color.Black;
+            RunLog = null;
+            if(!File.Exists(lb_BatFileName.Text))
+            {
+                MessageBox.Show("Not exist file: " + lb_BatFileName.Text);
+                return "";
+            }
             //RunLog = System.Windows.Forms.Application.StartupPath + @"\" + MoudleConnString + ".log";
             //if (File.Exists(RunLog)) File.Delete(RunLog);
-            string output = null;
-            string rst=StartProcess(Environment.CurrentDirectory + @"\STLINK_FLASH.bat", "\"" + FlashFileName + "\"", 120000,out output).ToString();
-            rtb_STLink.Text = output;
+            if (File.Exists(Application.StartupPath + @"\" + MoudleConnString + ".log")) File.Delete(Application.StartupPath + @"\" + MoudleConnString + ".log");
+            string rst = StartProcess(Environment.CurrentDirectory + @"\" + lb_BatFileName.Text, "\"" + FlashFileName + "\"", Timeout_ms).ToString();
             if (rst == "0")
             {
-                rtb_STLink.ForeColor = Color.Green;
+                rtb_Log.ForeColor = Color.Green;
             }
             else
             {
-                rtb_STLink.ForeColor = Color.Red;
+                rtb_Log.ForeColor = Color.Red;
             }
-            rtb_STLink.Update();
-            RunLog = output;
+            rtb_Log.Refresh();
+            RunLog= rtb_Log.Text;
             return rst;
 
         }

@@ -78,7 +78,7 @@
             
             </summary>
         </member>
-        <member name="M:STLink_Flash.UserControl_UI.RunBatFLASH(System.String@)">
+        <member name="M:STLink_Flash.UserControl_UI.RunBatFLASH(System.Int32,System.String@)">
             <summary>
             获取批处理执行的Log及执行返回的ExitCode(string类型)
             </summary>        

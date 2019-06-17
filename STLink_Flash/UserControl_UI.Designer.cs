@@ -35,8 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btn_FileSet = new System.Windows.Forms.Button();
             this.tb_FlashFile = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.rtb_STLink = new System.Windows.Forms.RichTextBox();
+            this.lb_BatFileName = new System.Windows.Forms.Label();
+            this.rtb_Log = new System.Windows.Forms.RichTextBox();
             this.tb_FileNameFullString = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btn_RunBat = new System.Windows.Forms.Button();
@@ -90,28 +90,28 @@
             this.tb_FlashFile.TabIndex = 34;
             this.tb_FlashFile.TextChanged += new System.EventHandler(this.tb_FlashFile_TextChanged);
             // 
-            // label14
+            // lb_BatFileName
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(3, 189);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(160, 15);
-            this.label14.TabIndex = 33;
-            this.label14.Text = "STLink_Flash.bat:";
+            this.lb_BatFileName.AutoSize = true;
+            this.lb_BatFileName.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_BatFileName.Location = new System.Drawing.Point(3, 189);
+            this.lb_BatFileName.Name = "lb_BatFileName";
+            this.lb_BatFileName.Size = new System.Drawing.Size(151, 15);
+            this.lb_BatFileName.TabIndex = 33;
+            this.lb_BatFileName.Text = "STLink_Flash.bat";
             // 
-            // rtb_STLink
+            // rtb_Log
             // 
-            this.rtb_STLink.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.rtb_Log.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtb_STLink.Location = new System.Drawing.Point(3, 215);
-            this.rtb_STLink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rtb_STLink.Name = "rtb_STLink";
-            this.rtb_STLink.ReadOnly = true;
-            this.rtb_STLink.Size = new System.Drawing.Size(417, 283);
-            this.rtb_STLink.TabIndex = 32;
-            this.rtb_STLink.Text = "";
+            this.rtb_Log.Location = new System.Drawing.Point(3, 215);
+            this.rtb_Log.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rtb_Log.Name = "rtb_Log";
+            this.rtb_Log.ReadOnly = true;
+            this.rtb_Log.Size = new System.Drawing.Size(417, 283);
+            this.rtb_Log.TabIndex = 32;
+            this.rtb_Log.Text = "";
             // 
             // tb_FileNameFullString
             // 
@@ -177,8 +177,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_FileSet);
             this.Controls.Add(this.tb_FlashFile);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.rtb_STLink);
+            this.Controls.Add(this.lb_BatFileName);
+            this.Controls.Add(this.rtb_Log);
             this.Controls.Add(this.pictureBox1);
             this.Name = "UserControl_UI";
             this.Size = new System.Drawing.Size(420, 500);
@@ -194,8 +194,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_FileSet;
         private System.Windows.Forms.TextBox tb_FlashFile;
-        private System.Windows.Forms.Label label14;
-        internal System.Windows.Forms.RichTextBox rtb_STLink;
+        private System.Windows.Forms.Label lb_BatFileName;
+        internal System.Windows.Forms.RichTextBox rtb_Log;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btn_RunBat;
         private System.Windows.Forms.CheckBox cb_Debug;

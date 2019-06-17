@@ -2,7 +2,7 @@
 cd /d "C:\Program Files (x86)\STMicroelectronics\STM32 ST-LINK Utility\ST-LINK Utility"
 set FWFile=%~1
 echo "%FWFile%"
-ping 127.0.0.1
+%~dp0Wait.exe 10
 goto end
 
 echo Disabling Read protection:
